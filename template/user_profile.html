@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/bootstrap-5.3.2-dist/css/bootstrap.css">
+    <script src="/static/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
+    <link rel="shortcut icon" href="media/favourite shows-logos.jpeg" type="image/x-icon">
+</head>
+<body style="background-image: url(/media/il_fullxfull.4425593935_j2d4.avif);">
+    <div class="container bg-dark">
+        <div class="navbar navbar-expand-lg">
+            <img src="/media/favourite shows-logos.jpeg" alt="No Image" width="100px" height="100px" class="pt-0">
+            <ul class="navbar nav">
+                <li class="nav-item nav-link text-white" style="font-weight: bold;">Welcome</li>
+                <li class="nav-item nav-link text-white" style="font-weight: bold;"><a href="{% url 'log_out' %}" style="color: white;">Sign Out</a></li>
+            </ul>
+        </div>
+    <div>
+        <div class="row" style="background-color: whitesmoke;">
+            <div class="col-6">
+                <h4 class="text-dark"><em>My Favourites</em></h4>
+                <div class="border p-2">
+                    {% for i in cat %}
+                    <a href="{% url 'see_details' i.id %}"><img src="{{i.poster.url}}" alt="No Image" width="188px" height="188px"></a>
+                    {% endfor %}
+                </div>
+                <h4 class="text-danger">Your Watchlist</h4>
+                <div class="border p-2 text-success">
+                    {% for k in watch %}
+                    <ul>
+                        <li class="text-success">{{k.title}}&nbsp;&nbsp;<b>(IMDb Rating :{{k.rating}})</b></li>
+                    </ul>      
+                    {% endfor %} 
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <h4>Your Profile</h4>
+                <table>                   
+                    {% for j in key %}
+                    <tr>
+                        <th></th>
+                        <td class="form-control"><img src="{{j.picture.url}}" height="300px" width="300px" alt="no picture"></td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td class="form-control">{{j.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Birthday</th>
+                        <td class="form-control">{{j.dob}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td class="form-control">{{j.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact</th>
+                        <td class="form-control">{{j.mobile}}</td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" name="user_id" value="{{j.id}}"></td>
+                    </tr>
+                    {% endfor %} 
+                </table>
+                <h5 class="text-success pt-3">More Actions</h5>
+                <ul>
+                    <li><a href="{% url 'add_show' %}">Add Your Favourite Shows</a></li>
+                    <li><a href="{% url 'edit_profile' %}">Edit Your Profile</a></li>
+                    <li><a href="{% url 'find_show' %}">Find Shows</a></li>
+                    <li><a href="{% url 'gallery' %}">Show Gallery</a></li>
+                    <li><a href="{% url 'my_shows' %}">Find/Edit My Shows</a></li>
+                    
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    {% if messages %}
+{% for msg in messages %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endfor %}
+{% endif %}
+</body>
+
+</html>

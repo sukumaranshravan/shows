@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Own List of Favourite on favourite shows</title>
+    <link rel="stylesheet" href="/static/bootstrap-5.3.2-dist/css/bootstrap.css">
+    <script src="/static/bootstrap-5.3.2-dist/js/bootstrap.js"></script>
+    <link rel="shortcut icon" href="media/favourite shows-logos.jpeg" type="image/x-icon">
+</head>
+<body style="background-image: url('media/il_fullxfull.4425593935_j2d4.avif');">
+    <div class="container">
+        <div class="navbar navbar-expand-lg">
+            <ul>
+                <p></p>
+                <p></p>
+            </ul>
+        </div>
+    </div>
+    <div class="container border bg-info-subtle opacity-75">
+        <div class="row">
+            <div class="col">
+                <h3 style="color: rgb(237, 100, 100);">Getting Started</h3>
+                <form action="{% url 'registeraction' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td><input type="text" name="name" class="form-control" placeholder="eg: FirstName LastName"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td><input type="radio" value="male" name="gender" class="form-check-input"><label class="form-check-label">Male</label>
+                            <input type="radio" value="female" name="gender" class="form-check-input"><label class="form-check-label">Female</label>
+                            <input type="radio" value="other" name="gender" class="form-check-input"><label class="form-check-label">Other</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Birthday</th>
+                        <td><input type="date" name="dob" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td><input type="text" name="email" class="form-control" placeholder="eg: abc@gmail.com"></td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td><input type="text" name="mobile" class="form-control" placeholder="+91-xxxx xxxx xx"></td>
+                    </tr>
+                    <tr>
+                        <th>Your Photo</th>
+                        <td><input type="file" name="picture" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>User Name</th>
+                        <td><input type="text" name="user_name" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td><input type="text" name="password" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="submit" value="Register" class="btn btn-danger"></td>
+                    </tr>
+                </table>
+            </form>
+            </div>
+            <div class="col">
+                <h3 style="color: blue;">Sign In</h3>
+                <form method="post" action="{% url 'log_inaction' %}">
+                    {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>User Name</th>
+                        <td><input type="text" name="user_name" class="form-control" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td><input type="text" name="password" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="submit" value="Sign In" class="btn btn-info"></td>
+                    </tr>
+                    <tr>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><img src="/media/favourite shows-logos.jpeg" height="200" width="200" alt="No Image"></td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert("{{msg}}")
+    </script>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
